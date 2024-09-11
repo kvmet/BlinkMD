@@ -14,9 +14,6 @@
       }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/katex@0.10.0/dist/katex.min.css">
-    <script type="text/javascript" src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/showdown-katex@latest/dist/showdown-katex.min.js"></script>
-    <script type="text/javascript" src="./blinkmd.js"></script>
   </head>
   <body>
     <header>
@@ -30,5 +27,12 @@
       <hr/>
       &copy;2024 kvmet
     </footer>
+    <script type="module">
+      import mermaid from 'The/Path/In/Your/Package/mermaid.esm.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/showdown-katex@latest/dist/showdown-katex.min.js"></script>
+    <script type="text/javascript" src="./blinkmd.js"></script>
   </body>
 </html>
