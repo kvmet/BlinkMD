@@ -1,5 +1,7 @@
 # This
 
+[toc]
+
 is a
 
 ## Test page
@@ -9,6 +11,10 @@ if (true) {
     return false;
 }
 ```
+
+Some word or something that needs explaining[^1].
+
+[^1]: The explanation.
 
 $$\texttt{Inline }\LaTeX$$
 

@@ -30,6 +30,7 @@
           metadata:true,
           extensions: [
             showdownKatex({}),
+            footnotes,
           ],
         });
         var html = converter.makeHtml(markdown);
