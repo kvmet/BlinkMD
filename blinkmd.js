@@ -2,6 +2,8 @@
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
     sitePath = `./site/`; // Start with ./ to make it relative to index.html directory
+    cacheMode = "no-cache";
+
     headerFile = null; // TODO
     footerFile = null; // TODO
 
@@ -16,7 +18,7 @@
 
     const el = document.querySelector("content");
 
-    fetch(sitePath + path)
+    fetch(sitePath + path, { cache: cacheMode })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
