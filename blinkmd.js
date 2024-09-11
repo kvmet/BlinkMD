@@ -1,7 +1,7 @@
 {
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
-    sitePath = `./site`; // Start with ./ to make it relative to index.html directory
+    sitePath = `./site/`; // Start with ./ to make it relative to index.html directory
     headerFile = null; // TODO
     footerFile = null; // TODO
 
