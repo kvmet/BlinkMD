@@ -18,7 +18,7 @@
     //}
 
     // TODO: strip key-value pairs? media format types?
-    path = window.location.search.replace(regex,``);
+    path = window.location.search.replace(/\./g,`/`).replace(regex,``);
 
     if(path.length <= 1) {
       path = "index.md";
