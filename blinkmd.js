@@ -1,17 +1,21 @@
 {
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
-    sitePath = `/site/`; // if leading slash, relative to dir of index.html
+    sitePath = `./site`; // Start with ./ to make it relative to index.html directory
     headerFile = null; // TODO
     footerFile = null; // TODO
 
-    if (sitePath[0] == `/`) {
-      baseUrl = window.location.href;
-      sitePath = baseUrl.substring(0, baseUrl.lastIndexOf(`/`)) + sitePath;
-    }
-    if (sitePath[sitePath.length-1] != `/`) {
-      sitePath += `/`;
-    }
+    //baseurl = window.location.pathname;
+    //baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf(`/`)) + sitePath;
+    //baseUrl = window.location.protocol + `/` + window.location.host + `/` + baseUrl;
+//
+    //if (sitePath[0] == `/`) {
+      //baseUrl = window.location.href;
+      //sitePath = baseUrl.substring(0, baseUrl.lastIndexOf(`/`)) + sitePath;
+    //}
+    //if (sitePath[sitePath.length-1] != `/`) {
+      //sitePath += `/`;
+    //}
 
     // TODO: strip key-value pairs? media format types?
     path = window.location.search.replace(regex,``);
