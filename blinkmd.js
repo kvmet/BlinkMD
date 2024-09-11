@@ -33,12 +33,12 @@
           ],
         });
         var html = converter.makeHtml(markdown);
-        mermaid.run();
 
         console.log(converter.getMetadata());
 
         //TODO: I suspect this is double-parsing because makeHtml returns a string. could maybe be more performant?
         el.innerHTML = converter.makeHtml(markdown);
+        mermaid.run();
       })
       .catch((error) => {
         el.replaceChildren(`Failed to load : ${error}`);
