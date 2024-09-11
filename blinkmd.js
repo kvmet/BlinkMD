@@ -5,18 +5,6 @@
     headerFile = null; // TODO
     footerFile = null; // TODO
 
-    //baseurl = window.location.pathname;
-    //baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf(`/`)) + sitePath;
-    //baseUrl = window.location.protocol + `/` + window.location.host + `/` + baseUrl;
-//
-    //if (sitePath[0] == `/`) {
-      //baseUrl = window.location.href;
-      //sitePath = baseUrl.substring(0, baseUrl.lastIndexOf(`/`)) + sitePath;
-    //}
-    //if (sitePath[sitePath.length-1] != `/`) {
-      //sitePath += `/`;
-    //}
-
     // TODO: strip key-value pairs? media format types?
     path = window.location.search.replace(/\./g,`/`).replace(regex,``);
 
@@ -36,7 +24,19 @@
         return response.text();
       })
       .then((markdown) => {
-        var converter = new showdown.Converter({metadata:true});
+        var converter = new showdown.Converter({
+          metadata:true,
+          extensions: [
+            showdownKatex({
+              // maybe you want katex to throwOnError
+              //throwOnError: true,
+              // disable displayMode
+              //displayMode: false,
+              // change errorColor to blue
+              //errorColor: '#1500ff',
+            }),
+          ],
+        });
         var html = converter.makeHtml(markdown);
 
         console.log(converter.getMetadata());
