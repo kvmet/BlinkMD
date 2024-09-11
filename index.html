@@ -25,10 +25,18 @@
     </content>
     <footer>
       <hr/>
+      <pre><code class="mermaid">
+        graph
+        a --> b
+      </code></pre>
       &copy;2024 kvmet
     </footer>
     <script type="text/javascript" src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/showdown-katex@latest/dist/showdown-katex.min.js"></script>
     <script type="text/javascript" src="./blinkmd.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false });
+    </script>
   </body>
 </html>

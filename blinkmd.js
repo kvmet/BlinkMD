@@ -1,5 +1,5 @@
 {
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  //import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
@@ -33,7 +33,7 @@
           ],
         });
         var html = converter.makeHtml(markdown);
-        mermaid.initialize({ startOnLoad: true });
+   //     mermaid.initialize({ startOnLoad: true });
 
         console.log(converter.getMetadata());
 
