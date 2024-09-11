@@ -33,7 +33,7 @@
           ],
         });
         var html = converter.makeHtml(markdown);
-   //     mermaid.initialize({ startOnLoad: true });
+        window.mermaid.run();
 
         console.log(converter.getMetadata());
 
