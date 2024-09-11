@@ -1,4 +1,6 @@
 {
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
     sitePath = `./site/`; // Start with ./ to make it relative to index.html directory
@@ -27,17 +29,11 @@
         var converter = new showdown.Converter({
           metadata:true,
           extensions: [
-            showdownKatex({
-              // maybe you want katex to throwOnError
-              //throwOnError: true,
-              // disable displayMode
-              //displayMode: false,
-              // change errorColor to blue
-              //errorColor: '#1500ff',
-            }),
+            showdownKatex({}),
           ],
         });
         var html = converter.makeHtml(markdown);
+        mermaid.initialize({ startOnLoad: true });
 
         console.log(converter.getMetadata());
 
