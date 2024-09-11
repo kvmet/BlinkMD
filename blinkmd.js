@@ -1,7 +1,7 @@
 {
   addEventListener(`load`, (event) => {
     const regex = /[^\w-\d()/]/g; // Regex to clean url query
-    sitePath = `/`;
+    sitePath = `/site/`;
     headerFile = null; // TODO
     footerFile = null; // TODO
 
