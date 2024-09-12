@@ -11,6 +11,13 @@ if (true) {
     return false;
 }
 ```
+## Test section
+
+howdy
+
+### Test nesting!
+
+#### Test nesting further!
 
 Some word or something that needs explaining[^1].
 

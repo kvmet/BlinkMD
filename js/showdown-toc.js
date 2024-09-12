@@ -4,19 +4,18 @@ const toc = {
     const elements = Array.from(
       new DOMParser().parseFromString(text, "text/html").body.childNodes,
     );
-    const output = [];
+    let output = "";
     let headingLevel = null;
     let tocId = null;
+    let tocHtml = "";
 
     elements.forEach((element) => {
       const trimmedText = element.textContent.trim();
 
       if (trimmedText === "[toc]") {
-        const tocElement = document.createElement("ol");
-        tocElement.className = "showdown-toc";
+        tocHtml = '<ol class="showdown-toc"></ol>';
         headingLevel = null;
-        tocId = output.length;
-        output.push(tocElement);
+        tocId = true;
       } else {
         const results = trimmedText.match(
           /^([\s\S]*?)((?:\\)?\[toc\])([\s\S]*)$/,
@@ -26,24 +25,22 @@ const toc = {
           if (results[2][0] === "\\") {
             element.textContent =
               results[1] + results[2].substring(1) + results[3];
+            output += element.outerHTML;
           } else {
             let before =
               results[1].trim().length > 0
-                ? createElementWithContent(element, results[1])
-                : null;
+                ? createElementHtml(element, results[1])
+                : "";
             let after =
               results[3].trim().length > 0
-                ? createElementWithContent(element, results[3])
-                : null;
+                ? createElementHtml(element, results[3])
+                : "";
 
-            const toc = document.createElement("ol");
-            toc.className = "showdown-toc";
-
-            if (before) output.push(before);
-            tocId = output.length;
-            output.push(toc);
-
-            element = after || toc;
+            tocHtml = '<ol class="showdown-toc"></ol>';
+            output += before + tocHtml;
+            element = after
+              ? createFakeElement(element.tagName, results[3])
+              : null;
             headingLevel = null;
           }
         } else if (
@@ -53,9 +50,8 @@ const toc = {
           element.tagName.match(/^H[1-6]$/)
         ) {
           headingLevel = parseInt(element.tagName.substring(1), 10);
-        }
-
-        if (
+          output += element.outerHTML;
+        } else if (
           tocId &&
           headingLevel &&
           element.tagName &&
@@ -64,43 +60,39 @@ const toc = {
           const thisLevel = parseInt(element.tagName.substring(1), 10);
 
           if (thisLevel === headingLevel) {
-            addAnchorToTOC(output[tocId], element);
+            tocHtml = updateTocHtmlWithAnchor(tocHtml, element);
           } else if (thisLevel < headingLevel) {
             tocId = headingLevel = null;
           }
+          output += element.outerHTML;
+        } else {
+          output += element.outerHTML;
         }
-
-        output.push(element);
       }
     });
 
-    return htmlStringFromElements(output);
+    return output;
   },
 };
 
-function createElementWithContent(element, content) {
-  if (element.tagName) {
-    const newElement = document.createElement(element.tagName);
-    newElement.textContent = content;
-    return newElement;
-  } else {
-    return document.createTextNode(content);
+function createElementHtml(originalElement, textContent) {
+  if (originalElement.tagName) {
+    return `<${originalElement.tagName}>${textContent}</${originalElement.tagName}>`;
   }
+  return textContent;
 }
 
-function addAnchorToTOC(toc, element) {
-  const li = document.createElement("li");
-  const a = document.createElement("a");
-  a.href = "#" + element.id;
-  a.textContent = element.textContent;
-  li.appendChild(a);
-  toc.appendChild(li);
+function createFakeElement(tagName, textContent) {
+  const fakeElement = document.createElement(tagName);
+  fakeElement.textContent = textContent;
+  return fakeElement;
 }
 
-function htmlStringFromElements(elements) {
-  const div = document.createElement("div");
-  elements.forEach((child) => div.appendChild(child));
-  return div.innerHTML;
+function updateTocHtmlWithAnchor(tocHtml, element) {
+  return tocHtml.replace(
+    "</ol>",
+    `<li><a href="#${element.id}">${element.textContent}</a></li></ol>`,
+  );
 }
 
 // Register the extension.
