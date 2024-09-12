@@ -100,92 +100,94 @@ var toc = {
         }
       }
 
-      // If we've started a table of contents, but have nothing in it yet,
-      // look for the first header tag we encounter (after the [toc]).
-      // That's going to be what we use as contents entries for this table
-      // of contents.
-      //OLD:else if (tocId && !headingLevel && element.prop("tagName")) {
-        //OLD:switch (element.prop("tagName")) {
-          //OLD:case 'H1':
-          //OLD:case 'H2':
-          //OLD:case 'H3':
-          //OLD:case 'H4':
-          //OLD:case 'H5':
-          //OLD:case 'H6':
-            //OLD:headingLevel = parseInt(element.prop('tagName').substr(1));
-            //OLD:break;
-        //OLD:}
-      //OLD:}
-      else if (tocId && !headingLevel && element.tagName) {
-        var tagName = element.tagName; // Get the tag name of the element
-
-        if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(tagName)) {
-          headingLevel = parseInt(tagName.substr(1), 10); // Extract the number part and convert it to an integer
-        }
-      }
-
-      // If we know what header level we're looking for (either we just
-      // found it above, or we're continuing to look for more) then check to
-      // see if this heading should be added to the contents.
-      //OLD:if (tocId && headingLevel) {
-        //OLD:switch (element.prop('tagName')) {
-          //OLD:case 'H1':
-          //OLD:case 'H2':
-          //OLD:case 'H3':
-          //OLD:case 'H4':
-          //OLD:case 'H5':
-          //OLD:case 'H6':
-            //OLD:var thisLevel = parseInt(element.prop('tagName').substr(1));
-            //OLD:if (thisLevel==headingLevel) {
-              //OLD://OLD: output[tocId] = $(output[tocId]).append($('<li>').append($('<a>',{href:'#'+element.attr('id'),text:element.text()})));
-              //OLD:var li = document.createElement('li');
-              //OLD:var a = document.createElement('a');
-              //OLD:a.href = '#' + element.id;
-              //OLD:a.textContent = element.textContent;
-              //OLD:li.appendChild(a);
-              //OLD:output[tocId].appendChild(li);
+          // If we've started a table of contents, but have nothing in it yet,
+          // look for the first header tag we encounter (after the [toc]).
+          // That's going to be what we use as contents entries for this table
+          // of contents.
+          //OLD:else if (tocId && !headingLevel && element.prop("tagName")) {
+            //OLD:switch (element.prop("tagName")) {
+              //OLD:case 'H1':
+              //OLD:case 'H2':
+              //OLD:case 'H3':
+              //OLD:case 'H4':
+              //OLD:case 'H5':
+              //OLD:case 'H6':
+                //OLD:headingLevel = parseInt(element.prop('tagName').substr(1));
+                //OLD:break;
             //OLD:}
-            //OLD:// If we move up in what would be the document tree
-            //OLD:// (eg: if we're looking for H2 and we suddenly find an
-            //OLD:// H1) then we can probably safely assume that we want
-            //OLD:// the table of contents to end for this section.
-            //OLD:else if (thisLevel<headingLevel) {
-              //OLD:toc = null
-              //OLD:tocId = null;
-              //OLD:headingLevel = null;
-            //OLD:}
-            //OLD:break;
-        //OLD:}
-        var tagName = element.tagName;
-        if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(tagName)) {
-          var thisLevel = parseInt(tagName.substr(1), 10);
-          if (thisLevel == headingLevel) {
-            var li = document.createElement('li');
-            var a = document.createElement('a');
-            a.href = '#' + element.id;
-            a.textContent = element.textContent;
-            li.appendChild(a);
-            output[tocId].appendChild(li);
-          } else if (thisLevel < headingLevel) {
-            toc = null;
-            tocId = null;
-            headingLevel = null;
+          //OLD:}
+          else if (tocId && !headingLevel && element.tagName) {
+            var tagName = element.tagName; // Get the tag name of the element
+
+            if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(tagName)) {
+              headingLevel = parseInt(tagName.substr(1), 10); // Extract the number part and convert it to an integer
+            }
           }
+
+          // If we know what header level we're looking for (either we just
+          // found it above, or we're continuing to look for more) then check to
+          // see if this heading should be added to the contents.
+          //OLD:if (tocId && headingLevel) {
+            //OLD:switch (element.prop('tagName')) {
+              //OLD:case 'H1':
+              //OLD:case 'H2':
+              //OLD:case 'H3':
+              //OLD:case 'H4':
+              //OLD:case 'H5':
+              //OLD:case 'H6':
+                //OLD:var thisLevel = parseInt(element.prop('tagName').substr(1));
+                //OLD:if (thisLevel==headingLevel) {
+                  //OLD://OLD: output[tocId] = $(output[tocId]).append($('<li>').append($('<a>',{href:'#'+element.attr('id'),text:element.text()})));
+                  //OLD:var li = document.createElement('li');
+                  //OLD:var a = document.createElement('a');
+                  //OLD:a.href = '#' + element.id;
+                  //OLD:a.textContent = element.textContent;
+                  //OLD:li.appendChild(a);
+                  //OLD:output[tocId].appendChild(li);
+                //OLD:}
+                //OLD:// If we move up in what would be the document tree
+                //OLD:// (eg: if we're looking for H2 and we suddenly find an
+                //OLD:// H1) then we can probably safely assume that we want
+                //OLD:// the table of contents to end for this section.
+                //OLD:else if (thisLevel<headingLevel) {
+                  //OLD:toc = null
+                  //OLD:tocId = null;
+                  //OLD:headingLevel = null;
+                //OLD:}
+                //OLD:break;
+            //OLD:}
+            var tagName = element.tagName;
+            if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(tagName)) {
+              var thisLevel = parseInt(tagName.substr(1), 10);
+              if (thisLevel == headingLevel) {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + element.id;
+                a.textContent = element.textContent;
+                li.appendChild(a);
+                output[tocId].appendChild(li);
+              } else if (thisLevel < headingLevel) {
+                toc = null;
+                tocId = null;
+                headingLevel = null;
+              }
+            }
+          }
+          // Push whatever element we've been looking at onto the output array.
+          output.push(element);
         }
+        // Build some HTML to return
+        // Return it.
+        //OLD: return $('<div>').append(output).html();
+        var div = document.createElement('div');
+        output.forEach(function(child) {
+          div.appendChild(child);
+        });
+        return div.innerHTML;
       }
-      // Push whatever element we've been looking at onto the output array.
-      output.push(element);
     }
-    // Build some HTML to return
-    // Return it.
-    //OLD: return $('<div>').append(output).html();
-    var div = document.createElement('div');
-    output.forEach(function(child) {
-      div.appendChild(child);
-    });
-    return div.innerHTML;
   }
 };
 
 showdown.extension('toc',toc);
-window.toc = toc;
+//window.toc = toc;
