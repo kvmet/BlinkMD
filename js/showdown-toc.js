@@ -1,3 +1,12 @@
+// showdown-toc
+//
+// Table of contents plugin
+//
+// Add [toc] in document to generate a table of contents list. Currently only 1 level of depth is supported.
+//
+// Adapted from https://github.com/ravisorg/showdown-toc
+// by kvmet
+
 const toc = {
   type: "output",
   filter: function (text, converter, options) {

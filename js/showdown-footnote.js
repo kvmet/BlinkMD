@@ -1,3 +1,6 @@
+// Adapted from https://github.com/halbgut/showdown-footnotes
+// by kvmet (Kristen Metcalfe)
+
 'use strict';
 
 const footnote = function() {
@@ -27,6 +30,8 @@ const footnote = function() {
     }
   ]
 };
+
+//TODO: make return reference ( [^1]: vs [^1] vs [^^1] ) 
 
 showdown.extension(`footnote`, footnote);
 

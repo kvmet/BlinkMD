@@ -23,7 +23,7 @@ howdy
 
 Some word or something that needs explaining[^1].
 
-[^1]: The explanation.
+[^1]:The explanation.
 
 $$\texttt{Inline }\LaTeX$$
 
