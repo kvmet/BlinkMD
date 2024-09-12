@@ -1,10 +1,8 @@
 'use strict';
 
-const showdown = require('showdown');
-const converter = new showdown.Converter();
-
-module.exports = function () {
-  return [
+const footnoteExtension = {
+  type: 'lang', 
+  filters: [
     {
       type: 'lang',
       filter: text => {
@@ -30,6 +28,8 @@ module.exports = function () {
         });
       }
     }
-  ];
+  ]
 };
+
+showdown.extension('footnote', () => footnoteExtension.filters);
 
