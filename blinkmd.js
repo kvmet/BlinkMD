@@ -29,9 +29,9 @@
         var converter = new showdown.Converter({
           metadata:true,
           extensions: [
-            showdownKatex({}),
-            toc,
-            footnote(),
+            //showdownKatex({}),
+            //toc,
+            //footnote(),
           ],
         });
         var html = converter.makeHtml(markdown);
