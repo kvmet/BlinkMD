@@ -28,5 +28,5 @@ const footnote = function() {
   ]
 };
 
-showdown.extension(`footnote`, () => footnote.filters);
+showdown.extension(`footnote`, footnote);
 
