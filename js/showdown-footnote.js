@@ -1,8 +1,7 @@
 'use strict';
 
-const footnote = {
-  type: `lang`,
-  filters: [
+const footnote = function() {
+  return [
     {
       type: `lang`,
       filter: function filter(text) {
@@ -26,7 +25,7 @@ const footnote = {
         });
       }
     }
-  ],
+  ]
 };
 
 showdown.extension(`footnote`, () => footnote.filters);
