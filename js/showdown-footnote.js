@@ -1,7 +1,7 @@
 'use strict';
 
 const footnote = {
-  type: `lang`
+  type: `lang`,
   filters: [
     {
       type: `lang`,
