@@ -23,16 +23,29 @@ howdy
 
 Some word or something that needs explaining[^1].
 
+test2 this is another reference to the same footnote [^1]
+
+this is a link to the second footnote[^2] another one
+
 [^1]:
-   PADDED
+   PADDED  
    does this do multiline?
 
-[^1]:
-UNPADDED
 
-[^1]: Inline padded?
+[^namegohere]: asdf
+    asdf  
+    multiline without starting with newline  
+    `inlinecode`  
+    Another line  
+    ```javascript
+    // SOME CODE HERE!!!!
+    even more code
+    code code code
+    ```
 
-[^^1] refback?
+[^2]: inline 
+
+[^3]: Inline again
 
 $$\texttt{Inline }\LaTeX$$
 
