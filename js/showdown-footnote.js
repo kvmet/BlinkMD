@@ -25,7 +25,7 @@ const footnote = {
         });
       }
     }
-  ];
+  ],
 };
 
 showdown.extension('footnote', () => footnoteExtension.filters);
