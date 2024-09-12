@@ -23,7 +23,7 @@ var toc = {
 
       // Does this item contain a [toc] with other stuff?
       // If so, we'll split the element into two 
-      else if (results = element.text().trim().match(/^([\s\S]*?)((?:\\)?\[toc\])([\s\S]*)$/)) {
+      else if (results = element.textContent.trim().match(/^([\s\S]*?)((?:\\)?\[toc\])([\s\S]*)$/)) {
 
         // If there was a \ before the [toc] they're trying to escape it,
         // so return the [toc] string without the \ and carry on. For
@@ -32,7 +32,8 @@ var toc = {
         // the filter. Leaving this code here anyway for now because it's
         // "the right thing to do"(tm).
         if (results[2][0]=='\\') {
-          element.text(results[1]+results[2].substr(1)+results[3]);
+          //OLD:element.text(results[1]+results[2].substr(1)+results[3]);
+          element.textContent = (results[1]+results[2].substr(1)+results[3]);
         }
 
         // Otherwise start building a new table of contents.
