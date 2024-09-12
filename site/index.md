@@ -23,7 +23,16 @@ howdy
 
 Some word or something that needs explaining[^1].
 
-[^1]:The explanation.
+[^1]:
+   PADDED
+   does this do multiline?
+
+[^1]:
+UNPADDED
+
+[^1]: Inline padded?
+
+[^^1] refback?
 
 $$\texttt{Inline }\LaTeX$$
 
