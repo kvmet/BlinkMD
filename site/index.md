@@ -17,6 +17,8 @@ howdy
 
 ### Test nesting!
 
+[toc]
+
 #### Test nesting further!
 
 Some word or something that needs explaining[^1].

@@ -1,8 +1,7 @@
 'use strict';
 
 const footnote = {
-  type: 'lang', 
-  filters: [{
+  filters: [
     type: 'lang',
     filter: function filter(text) {
       return text.replace(/^\[\^([\d\w]+)\]:\s*((\n+(\s{2,4}|\t).+)+)$/mg, function (str, name, rawContent, _, padding) {
@@ -27,5 +26,5 @@ const footnote = {
   }];
 };
 
-showdown.extension('footnote', footnote);
+showdown.extension('footnote', () => footnoteExtension.filters);
 
