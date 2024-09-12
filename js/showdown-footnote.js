@@ -1,6 +1,6 @@
 'use strict';
 
-const footnoteExtension = {
+const footnote = {
   type: 'lang', 
   filters: [
     {
@@ -31,5 +31,5 @@ const footnoteExtension = {
   ]
 };
 
-showdown.extension('footnote', () => footnoteExtension.filters);
+showdown.extension('footnote', footnote);
 
