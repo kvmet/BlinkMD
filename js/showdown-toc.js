@@ -188,3 +188,4 @@ var toc = {
 };
 
 showdown.extension('toc',toc);
+window.toc = toc;
