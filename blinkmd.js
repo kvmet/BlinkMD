@@ -30,6 +30,7 @@
           metadata:true,
           extensions: [
             showdownKatex({}),
+            toc,
             //footnotes,
           ],
         });
