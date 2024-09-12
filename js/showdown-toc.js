@@ -173,9 +173,9 @@ var toc = {
             headingLevel = null;
           }
         }
-      }
     // Push whatever element we've been looking at onto the output array.
     output.push(element);
+      }
     // Build some HTML to return
     // Return it.
     //OLD: return $('<div>').append(output).html();
