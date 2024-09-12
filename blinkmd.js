@@ -31,7 +31,7 @@
           extensions: [
             showdownKatex({}),
             toc,
-            //footnotes,
+            footnotes,
           ],
         });
         var html = converter.makeHtml(markdown);
