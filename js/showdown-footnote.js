@@ -1,7 +1,6 @@
+'use strict';
 // Adapted from https://github.com/halbgut/showdown-footnotes
 // by kvmet (Kristen Metcalfe)
-
-'use strict';
 
 const footnote = function() {
   return [
