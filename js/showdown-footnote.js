@@ -8,15 +8,11 @@ const footnote = function() {
     {
       type: 'lang',
       filter: function(text) {
-        const regexReference = /\[\^([\d\w]+)\](?!:)/gm;
-        const regexDefinition = /^\[\^([\d\w]+)\]:\s*([\s\S]+?)(?=\n{2,}|\Z|\[\^)/gm;
+        const regexDefinition = /\[\^([\d\w]+)\]:\s*([\s\S]+?)(?=\n{2,}|\Z|\[\^)/gm;
         const placeholderPrefix = "FOOTNOTE_DEF_START_";
         const placeholderSuffix = "FOOTNOTE_DEF_END";
 
-        // Function to generate unique IDs for multiple references
-        const generateId = (id, count) => `footnote-${id}-${count}`;
-
-        // Initialize footnote object properly
+        // Initialize footnote object
         footnotes.clear = () => {
           for (const key in footnotes) {
             if (key !== 'clear') {
@@ -26,17 +22,25 @@ const footnote = function() {
         };
         footnotes.clear();
 
-        // First, process footnote definitions
+        // Process footnote definitions
         text = text.replace(regexDefinition, (match, id, content) => {
-          footnotes[id] = { count: 0, refs: [], content: '', placeholder: '' };
-          footnotes[id].content = content.replace(/(^|\n)( {4}|\t)/g, '$1'); // Remove leading indentation if any
-          footnotes[id].placeholder = `${placeholderPrefix}${id}`;
-
-          const placeholderDefinition = `${placeholderPrefix}${id}${placeholderSuffix}`;
-          return `<!--${placeholderPrefix}${id}-->${footnotes[id].content}<!--${placeholderSuffix}-->`;
+          footnotes[id] = { count: 0, refs: [], content: content.trim() };
+          return `\n<!--${placeholderPrefix}${id}-->\n${content.trim()}\n<!--${placeholderSuffix}-->\n`;
         });
 
-        // Then, process footnote references
+        return text;
+      }
+    },
+    {
+      type: 'output',
+      filter: function(text) {
+        const regexReference = /\[\^([\d\w]+)\](?!:)/g;
+        const regexPlaceholder = /<!--FOOTNOTE_DEF_START_([\d\w]+)-->([\s\S]*?)<!--FOOTNOTE_DEF_END-->/g;
+
+        // Function to generate unique IDs for multiple references
+        const generateId = (id, count) => `footnote-${id}-${count}`;
+
+        // Process footnote references
         text = text.replace(regexReference, (match, id) => {
           if (!footnotes[id]) {
             return match; // Return the original reference if no definition exists
@@ -47,14 +51,7 @@ const footnote = function() {
           return `<a class="footnote-reference" href="#footnote-def-${id}" id="${uniqueId}"><sup>${id}<sub>${subscript}</sub></sup></a>`;
         });
 
-        return text;
-      }
-    },
-    {
-      type: 'output',
-      filter: function(text) {
-        const regexPlaceholder = /<!--FOOTNOTE_DEF_START_([\d\w]+)-->([\s\S]*?)<!--FOOTNOTE_DEF_END-->/gm;
-
+        // Process footnote definitions
         text = text.replace(regexPlaceholder, (match, id, content) => {
           const backLinks = footnotes[id].refs.map(
             (ref, index) => `<a href="#${ref.id}" class="footnote-backref">↩${subscriptLetters[index]}</a>`
