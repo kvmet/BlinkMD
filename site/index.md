@@ -71,9 +71,13 @@ They can even have descriptive names if you are into that sort of thing[^formatt
 
 If you refer to a footnote[^1] multiple times, then each[^1] instance gets a unique backlink!
 
-> [!todo]
->
-> describe format
+Using a footnote that has no definition results in exactly what you originally provided[^nodef]
+
+```
+footnote[^nodef]
+
+but you can still make other references[^1] which may be useful for describing details about code.
+```
 
 ### Callouts
 

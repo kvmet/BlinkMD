@@ -26,27 +26,25 @@ const footnote = function() {
         };
         footnotes.clear();
 
-        // Process footnote references to generate unique IDs
-        text = text.replace(regexReference, (match, id, offset) => {
-          if (!footnotes[id]) {
-            footnotes[id] = { count: 0, refs: [], content: '', placeholder: '' };
-          }
-          const uniqueId = generateId(id, ++footnotes[id].count);
-          footnotes[id].refs.push({ id: uniqueId, offset: offset });
-          const subscript = subscriptLetters[footnotes[id].refs.length - 1];
-          return `<a class="footnote-reference" href="#footnote-def-${id}" id="${uniqueId}"><sup>${id}<sub>${subscript}</sub></sup></a>`;
-        });
-
-        // Process footnote definitions
+        // First, process footnote definitions
         text = text.replace(regexDefinition, (match, id, content) => {
-          if (!footnotes[id]) {
-            footnotes[id] = { count: 0, refs: [], content: '', placeholder: '' };
-          }
+          footnotes[id] = { count: 0, refs: [], content: '', placeholder: '' };
           footnotes[id].content = content.replace(/(^|\n)( {4}|\t)/g, '$1'); // Remove leading indentation if any
           footnotes[id].placeholder = `${placeholderPrefix}${id}`;
 
           const placeholderDefinition = `${placeholderPrefix}${id}${placeholderSuffix}`;
           return `<!--${placeholderPrefix}${id}-->${footnotes[id].content}<!--${placeholderSuffix}-->`;
+        });
+
+        // Then, process footnote references
+        text = text.replace(regexReference, (match, id) => {
+          if (!footnotes[id]) {
+            return match; // Return the original reference if no definition exists
+          }
+          const uniqueId = generateId(id, ++footnotes[id].count);
+          footnotes[id].refs.push({ id: uniqueId });
+          const subscript = subscriptLetters[footnotes[id].refs.length - 1];
+          return `<a class="footnote-reference" href="#footnote-def-${id}" id="${uniqueId}"><sup>${id}<sub>${subscript}</sub></sup></a>`;
         });
 
         return text;
