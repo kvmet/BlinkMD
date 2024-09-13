@@ -34,6 +34,7 @@
             footnote(),
             callout(),
             spoiler(),
+            blinklink(),
           ],
         });
         var html = converter.makeHtml(markdown);

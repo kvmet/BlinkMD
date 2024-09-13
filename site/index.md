@@ -13,6 +13,10 @@ if (true) {
 ```
 ## Test section
 
+[[docs/advanced-features]]
+
+[[docs/advanced-features|copy wikipedia formatting baby]]
+
 This thing has a ||spoiler please do not read|| spoiler.
 
 ||
