@@ -20,7 +20,7 @@ All rendering and processing is done by the client. The server is merely a file 
 ## What is it bad for?
 
 - SEO (Many web crawlers ignore javascript and the link format is not crawler friendly.)
-- Anything that requires any level of security or bi-directional communication.
+- Anything that requires bi-directional communication.
 
 ## Features
 
