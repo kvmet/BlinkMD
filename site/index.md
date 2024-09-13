@@ -15,6 +15,35 @@ if (true) {
 
 This thing has a ||spoiler please do not read|| spoiler.
 
+||
+
+## What about
+
+a bunch of content
+
+that lives within a spoiler?
+
+||
+
+Some text || with a thingy
+
+More text with a || thingy
+
+One paragraph || that just  
+happens to have multiline || thingy
+
+## what about || spoiler || header?!
+
+## what about || spoiler|| header?!
+
+||multi
+line
+spoilers  
+even  
+if  
+there  
+should be line breaks||
+
 howdy
 
 > block

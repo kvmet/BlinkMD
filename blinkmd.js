@@ -33,6 +33,7 @@
             toc,
             footnote(),
             callout(),
+            spoiler(),
           ],
         });
         var html = converter.makeHtml(markdown);
