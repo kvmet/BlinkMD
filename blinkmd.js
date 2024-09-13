@@ -39,7 +39,10 @@
         });
         var html = converter.makeHtml(markdown);
 
-        console.log(converter.getMetadata());
+        let metadata = converter.getMetadata();
+        if (metadata.title) {
+          window.top.document.title = metadata.title;
+        }
 
         //TODO: I suspect this is double-parsing because makeHtml returns a string. could maybe be more performant?
         el.innerHTML = converter.makeHtml(markdown);
