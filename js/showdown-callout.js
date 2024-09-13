@@ -89,7 +89,24 @@ showdownCalloutStyle.innerHTML = `
 }
 
 .callout-collapsible {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+/* Collapsed state */
+.callout-collapsed > *:not(:first-child) {
+    display: none;
+}
+
+/* Collapse/Expand icons */
+.callout-collapsible p:first-child::before {
+    content: '▾';
+    display: inline-block;
+    margin-right: 5px;
+    transition: transform 0.3s;
+}
+
+.callout-collapsed p:first-child::before {
+    transform: rotate(-90deg);
 }
 
 /* Info */
@@ -161,23 +178,6 @@ showdownCalloutStyle.innerHTML = `
     background-color: #f3e5f5;
     border-color: #9c27b0;
     color: #4a148c;
-}
-
-/* Collapsed state */
-.callout-collapsed > *:not(:first-child) {
-    display: none;
-}
-
-/* Collapse/Expand icons */
-.callout-collapsible p:first-child::before {
-    content: '▾';
-    display: inline-block;
-    margin-right: 5px;
-    transition: transform 0.3s;
-}
-
-.callout-collapsed p:first-child::before {
-    transform: rotate(-90deg);
 }
 `;
 document.head.appendChild(showdownCalloutStyle);
