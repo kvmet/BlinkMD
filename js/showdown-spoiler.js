@@ -29,9 +29,19 @@ const spoiler = function() {
     {
       type: 'output',
       filter: function(text) {
-        return text.replace(/\|\|((?:(?!<\/).|\n)+?)\|\|/g, function(match, content) {
-          return '<span class="spoiler">' + content.trim() + '</span>';
-        });
+        // Split the text into code blocks and non-code blocks
+        const parts = text.split(/(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>)/gi);
+        
+        return parts.map(part => {
+          // If this part is a code block, return it unchanged
+          if (part.startsWith('<pre') || part.startsWith('<code')) {
+            return part;
+          }
+          // Otherwise, apply the spoiler replacement
+          return part.replace(/\|\|((?:(?!<\/).|\n)+?)\|\|/g, function(match, content) {
+            return '<span class="spoiler">' + content.trim() + '</span>';
+          });
+        }).join('');
       }
     }
   ];
