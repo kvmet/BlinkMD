@@ -32,6 +32,7 @@
             showdownKatex({}),
             toc,
             footnote(),
+            callout(),
           ],
         });
         var html = converter.makeHtml(markdown);

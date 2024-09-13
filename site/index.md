@@ -13,7 +13,57 @@ if (true) {
 ```
 ## Test section
 
+This thing has a ||spoiler please do not read|| spoiler.
+
 howdy
+
+> block
+> quote
+> > testing is going
+> > on here
+
+:smile
+
+> [!note] This is a note callout
+> 
+> Content of the note callout.
+
+---
+
+> [!warning-] Collapsible Warning (starts collapsed)
+> 
+> This warning starts collapsed.
+> 
+> ```
+> This is a code block
+> ```
+
+---
+
+> [!tip+] Expandable Tip (starts expanded)
+> 
+> This tip starts expanded but can be collapsed.
+
+---
+
+> [!custom] Custom Callout with Nested Content
+> 
+> This callout has nested content:
+> > [!info-] Nested Info
+> > 
+> > This is nested information.
+
+---
+
+> [!spoiler-]
+> 
+> Hazel is a goober
+
+---
+
+> [!warning+]
+>
+> Here's one that should use classname as a title
 
 ### Test nesting!
 
@@ -59,7 +109,6 @@ showdown
 katex
 showdown-katex: https://obedm503.github.io/showdown-katex/
 showdown-toc: https://github.com/ravisorg/showdown-toc
-showdown-footnotes: https://github.com/halbgut/showdown-footnotes
 IBM Plex Mono
 mermaid : mermaid.js.org
 
