@@ -4,6 +4,25 @@ const footnote = function() {
   const footnotes = {};
   const subscriptLetters = 'abcdefghijklmnopqrstuvwxyz';
 
+  // Helper function to remove indentation from multi-line content
+  const removeIndent = (content) => {
+    const lines = content.split('\n');
+    if (lines.length <= 1) return content;
+    
+    // Measure indentation of the first and second lines
+    const firstLineIndent = lines[0].match(/^\s*/)[0].length;
+    const secondLineIndent = lines[1].match(/^\s*/)[0].length;
+    
+    // Calculate the difference in indentation
+    const indentDifference = Math.max(0, secondLineIndent - firstLineIndent);
+    
+    // Remove the difference in indentation from the second line onwards
+    return [
+      lines[0],
+      ...lines.slice(1).map(line => line.slice(indentDifference))
+    ].join('\n');
+  };
+
   return [
     {
       type: 'lang',
@@ -24,8 +43,9 @@ const footnote = function() {
 
         // Process footnote definitions
         text = text.replace(regexDefinition, (match, id, content) => {
-          footnotes[id] = { count: 0, refs: [], content: content.trim() };
-          return `\n<!--${placeholderPrefix}${id}-->\n${content.trim()}\n<!--${placeholderSuffix}-->\n`;
+          const trimmedContent = removeIndent(content.trim());
+          footnotes[id] = { count: 0, refs: [], content: trimmedContent };
+          return `\n<!--${placeholderPrefix}${id}-->\n${trimmedContent}\n<!--${placeholderSuffix}-->\n`;
         });
 
         return text;

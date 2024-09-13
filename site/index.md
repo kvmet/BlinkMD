@@ -112,7 +112,9 @@ thing2 --> thing4
 
 ## Footnotes
 
-[^1]: Footnote description!
+[^1]: Footnote description! Note that multiple
+    references can be back-linked to their location
+    in the text.
 
 [^formatted]: Footnotes can even have names.  
     And they support multi-line content.  
@@ -124,6 +126,7 @@ thing2 --> thing4
         }
     }
     ```
+[^solo]: This one is single-line with no references
 
 -----
 OLD STUFF
