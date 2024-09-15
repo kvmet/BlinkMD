@@ -126,6 +126,10 @@ thing2 --> thing4
         }
     }
     ```
+    > [!tip-]
+    >
+    > It is even compatible with other STUFF
+
 [^solo]: This one is single-line with no references
 
 -----
