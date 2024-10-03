@@ -81,9 +81,55 @@ but you can still make other references[^1] which may be useful for describing d
 
 ### Callouts
 
-> [!todo]
+```
+> [!warning]
+> 
+> content! If no title is provided, then the class name is used.
 >
-> describe format
+> > [!customClass+] Custom title go here!
+> > 
+> > This one is nested, and has a custom title. It will have a classname of 'callout-type-customClass' for easy styling.
+> > 
+> > ```
+> > Complex formatting is possible within callouts.
+> > ```
+
+<br>
+
+> [!tip+]
+>
+> Collapsible and starts expanded
+
+<br>
+
+> [!tip-]
+>
+> Collapsible and starts collapsed
+```
+
+> [!warning]
+> 
+> content! If no title is provided, then the class name is used.
+>
+> > [!customClass+] Custom title go here!
+> > 
+> > This one is nested, and has a custom title. It will have a classname of 'callout-type-customClass' for easy styling.
+> > 
+> > ```
+> > Complex formatting is possible within callouts.
+> > ```
+
+<br>
+
+> [!tip+]
+>
+> Collapsible and starts expanded
+
+<br>
+
+> [!tip-] Custom titles are shown while collapsed.
+>
+> Collapsible and starts collapsed
 
 ### LaTeX (via KaTeX)
 
